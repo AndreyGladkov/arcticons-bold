@@ -57,10 +57,38 @@ tasks.register('checkonly', JavaExec) {
     jvmArgs += ['--enable-native-access=ALL-UNNAMED']
 }
 
+def boldStrokeWidth = (project.findProperty('boldStrokeWidth') ?: '2.0').toString()
+def boldGeneratedRes = rootProject.file('app/src/boldGenerated/res')
+def boldIcons = new File(boldGeneratedRes, 'drawable-nodpi')
 
+tasks.register('copyBoldBaseRes', Sync) {
+    from(rootProject.file('app/src/black/res')) {
+        exclude 'drawable-nodpi/**', 'values/dashboard_configurations.xml'
+    }
+    into boldGeneratedRes
+    preserve { include 'drawable-nodpi/**' }
+}
+tasks.register('runbold', JavaExec) {
+    dependsOn 'copyBoldBaseRes'
+    mainClass = 'com.donnnno.arcticons.helper.BoldIconRenderer'
+    classpath = sourceSets.main.runtimeClasspath
+    workingDir = rootProject.projectDir
+    args = ['icons/black', boldIcons.path, boldStrokeWidth]
+    inputs.dir('../icons/black')
+    inputs.property('strokeWidth', boldStrokeWidth)
+    outputs.dir(boldIcons)
+    doFirst { project.delete(boldIcons) }
+}
 
+tasks.named('test') {
+    useJUnitPlatform()
+}
 
 dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     // SDK and tools required for Android and other general tasks
     implementation("com.android.tools:sdk-common:32.0.0")
 

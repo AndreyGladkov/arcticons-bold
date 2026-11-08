@@ -31,6 +31,7 @@ tasks.register('clean', Delete) {
     delete 'app/src/light/res/drawable-anydpi'
     delete 'app/src/dark/res/drawable-anydpi'
     delete 'app/src/dayNight/res/drawable-anydpi'
+    delete 'app/src/boldGenerated'
 }
 
 //F-DROID REPRODUCIBLE BUILDS

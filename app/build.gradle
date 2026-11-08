@@ -101,6 +101,12 @@ android {
             applicationIdSuffix = '.daynight'
             resValue "string", "app_name", "Arcticons Day & Night"
         }
+        bold {
+            dimension = "variant"
+            applicationId = "io.github.andreygladkov.arcticonsbold"
+            versionNameSuffix = '-bold'
+            resValue "string", "app_name", "Arcticons Bold"
+        }
     }
 
     sourceSets {
@@ -112,6 +118,7 @@ android {
         youPlay { res.srcDirs = ['src/youPlay/res/', 'src/you/res']
                 manifest.srcFile 'src/you/AndroidManifest.xml'}
         dayNight { res.srcDirs = ['src/dayNightFree/res/', 'src/dayNight/res'] }
+        bold { res.srcDirs = ['src/bold/res', 'src/boldGenerated/res'] }
     }
 
     base {
@@ -159,6 +166,8 @@ androidComponents {
                 helperTaskName = "runnormal"
             } else if (flavor.contains("dayNight")) {
                 helperTaskName = "rundayNight"
+            } else if (flavor == "bold") {
+                helperTaskName = "runbold"
             }
 
             if (helperTaskName != null) {
@@ -179,6 +188,7 @@ dependencies {
     blackImplementation 'com.github.Donnnno:candybar-foss:3.22.2'
     youImplementation 'com.github.Donnnno:candybar-foss:3.22.2'
     dayNightImplementation 'com.github.Donnnno:candybar-foss:3.22.2'
+    boldImplementation 'com.github.Donnnno:candybar-foss:3.22.2'
 }
 
 import com.android.tools.profgen.ArtProfileKt

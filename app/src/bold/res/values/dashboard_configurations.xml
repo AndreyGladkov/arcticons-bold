@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <string name="home_title">Arcticons Bold</string>
+
+    <string name="navigation_view_header_title">Arcticons Bold</string>
+
+    <string name="default_theme">light</string>
+
+    <bool name="includes_adaptive_icons">false</bool>
+
+    <string name="home_description">
+        <![CDATA[
+            <p>Arcticons Bold is <a href="https://github.com/Arcticons-Team/Arcticons">Arcticons</a> Black redrawn with a twice thicker line, for e-ink and other monochrome screens.</p>
+            <br>
+            <p>Every icon is made by the Arcticons contributors and licensed under CC BY-SA 4.0. A missing icon has to be requested in Arcticons: it appears here with the next rebuild.</p>
+        ]]>
+    </string>
+
+    <bool name="enable_icon_request">false</bool>
+
+    <bool name="enable_donation">false</bool>
+
+    <string name="rate_and_review_link">https://github.com/AndreyGladkov/arcticons-bold</string>
+
+    <string name="share_link">https://github.com/AndreyGladkov/arcticons-bold</string>
+
+    <string name="wallpaper_json">https://wallpapers.arcticons.com/config-black.json</string>
+
+</resources>

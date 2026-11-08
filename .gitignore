@@ -37,3 +37,5 @@ bundletool.jar
 *.eml
 freedesktop-theme/arcticons*
 keystore.properties
+**/boldGenerated/
+!preparehelper/src/test/

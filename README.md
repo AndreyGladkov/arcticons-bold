@@ -1,58 +1,35 @@
-<div align="center">
+# Arcticons Bold
 
-![Arcticons icon](github/arcticons.png)
+Arcticons Bold is [Arcticons](https://github.com/Arcticons-Team/Arcticons) Black redrawn with a line twice as thick. Stock Arcticons lines get faint on e-ink and other monochrome screens at launcher icon sizes; this pack keeps the same 15000+ icons and only changes the stroke.
 
-[<img alt="F-Droid" src="https://img.shields.io/f-droid/v/com.donnnno.arcticons">](https://f-droid.org/packages/com.donnnno.arcticons) 
-[<img alt="Google Play" src="https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplay.cuzi.workers.dev%2Fplay%3Fi%3Dcom.donnnno.arcticons%26l%3DGoogle%2520Play%26m%3D%24version">](https://play.google.com/store/apps/details?id=com.donnnno.arcticons)
+![Stock Arcticons Black (top) and Arcticons Bold (bottom)](github/bold-comparison.png)
 
-[<img alt="GitHub" src="https://img.shields.io/github/downloads/donnnno/arcticons/total?label=github%20downloads">](https://github.com/Arcticons-Team/Arcticons/releases/latest)
-[<img alt="GitHub" src="https://img.shields.io/github/downloads/donnnno/arcticons/latest/total">](https://github.com/Arcticons-Team/Arcticons/releases/latest)
+All icons are made by the [Arcticons contributors](https://github.com/Arcticons-Team/Arcticons/graphs/contributors). This fork adds nothing but the renderer that thickens them. Missing icons have to be requested in Arcticons itself; they show up here after the next rebuild.
 
-[![Sync to Codeberg](https://github.com/Arcticons-Team/Arcticons/actions/workflows/sync_to_codeberg.yml/badge.svg)](https://github.com/Arcticons-Team/Arcticons/actions/workflows/sync_to_codeberg.yml)
-[![Build Nightly](https://github.com/Arcticons-Team/Arcticons/actions/workflows/BuildNightly.yml/badge.svg)](https://github.com/Arcticons-Team/Arcticons/actions/workflows/BuildNightly.yml)
-</div>
+Works with any launcher that supports ADW or Nova icon packs. Installs next to the official Arcticons apps (package `io.github.andreygladkov.arcticonsbold`).
 
-# Arcticons for Android
+## How it is built
 
-❄️ With over **15000 icons**, Arcticons is one of the largest free & open source icon-packs available. Featuring consistent and elegant handcrafted icons, giving you a minimalistic clutter-free experience on your phone.
+The `bold` flavor renders `icons/black/*.svg` into 256 px WebP icons with a stroke width of 2.0 (stock is 1 on a 48-unit viewBox). Explicit `stroke-width: 0` on filled shapes is kept. Rendering happens at build time in `:preparehelper:runbold`, so the repository stores no extra icon files.
 
-🗺️ Powered by a community of icon creators all around the world!
+Requirements: JDK 21 and the Android SDK.
 
-## Knowledge base
+```sh
+gradle :app:assembleBoldRelease
+```
 
-📖 Looking to contribute, have questions about Arcticons or anything else? Check out our knowledge base.
+The repository ships no Gradle wrapper, same as upstream; use Gradle 9.7 or newer. Another stroke width can be tried with `-PboldStrokeWidth=1.5`.
 
-<div align="center">
-  <br>
-  <a href="https://docs.arcticons.com/"><img height="80" alt="Knowledge base" src="github/knowledgebase.webp"></a>
-</div>
+Release builds are signed with the key described in `keystore.properties` (not committed); without it they fall back to the debug key.
 
-## Donate to the project
+## Updating icons
 
-✨ Help keep the project alive by supporting it.
-
-<div align="center">
-  <br>
-  <a href="https://liberapay.com/Arcticons/"><img height="80" alt="Donate using Liberapay" src="github/liberapay.webp"></a>   <a href="https://Ko-fi.com/donno_"><img height="80" alt="Donate using Ko-Fi" src="github/kofi.webp"></a>
-</div>
-
-## Matrix room
-
-💬 Come chat with us if you have any questions, or if you're curious about the project.
-
-<div align="center">
-  <br>
-  <a href="https://matrix.to/#/#arcticons-central:matrix.org"><img height="80" alt="Matrix room" src="github/chat.webp"></a>
-</div>
-
-## Sponsored by
-
-<div align="center">
-  <br>
-  <a href="https://www.gitbook.com/"><img height="80" alt="GitBook" src="github/gitbook.webp"></a>
-</div>
+```sh
+git fetch upstream
+git merge upstream/main
+gradle :app:assembleBoldRelease
+```
 
 ## License
 
-Arcticons uses the [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html).<br>
-All icons are licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Same as Arcticons: the code is under the [GPL-3.0 license](https://www.gnu.org/licenses/gpl-3.0.en.html), the icons are under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). The thickened icons are a derivative of Arcticons and stay under CC BY-SA 4.0.
